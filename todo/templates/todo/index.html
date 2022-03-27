@@ -1,0 +1,16 @@
+{% extends 'todo/base.html'%}
+
+{% block nav_options %}
+    <li><a href="{% url 'todo:add' %}">Add todo</a></li>
+{% endblock nav_options %}
+
+{% block content %}
+    <ul>
+        {% for todo in todos %}
+            <li>
+                <a href="{% url 'todo:toggle' todo.id %}">{% if todo.is_completed %} ✅ {% else %} ⬜ {% endif %}</a>
+                <a href="{% url 'todo:detail' todo.id %}">{{ todo.title }}</a><a href="{% url 'todo:delete' todo.id %}">🗑️</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

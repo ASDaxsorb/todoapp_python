@@ -1,0 +1,20 @@
+{% extends 'todo/base.html' %}  
+
+{% block nav_options %}
+    <li><a href="{% url 'todo:index' %}">Back</a></li>
+    <li><a href="{% url 'todo:edit' current_todo.id %}">Edit</a></li>
+{% endblock nav_options %}
+
+{% block content %}
+    <article>
+        <section>
+            <p> {{ current_todo.title }} - {{ current_todo.is_completed }} </p> 
+            <span> {{ current_todo.pub_date|date:"m-d-Y" }} </span>
+        </section>
+        <section>
+            <p>
+                {{ current_todo.content }}
+            </p>
+        </section>
+    </article>
+{% endblock content %}

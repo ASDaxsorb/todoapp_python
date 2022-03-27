@@ -1,0 +1,22 @@
+{% extends 'todo/base.html' %}
+
+{% block nav_options %}
+    <li><button type="submit" form="update_form">Update</button></li>
+    <li><a href="{% url 'todo:detail' current_todo.id %}">Cancel</a></li>
+{% endblock nav_options %}
+
+{% block content %}
+    {% if error %} {{ error }} {% endif %}
+    <form id="update_form" action="{% url 'todo:update' current_todo.id %}" method="post">
+        {% csrf_token %}
+        <label>
+            Title:
+            <input type="text" name="title" id="title{{ current_todo.id }}" value="{{ current_todo.title.strip }}">
+        </label>
+        <br>
+        <label>
+            Content:
+            <textarea name="content" id="content{{current_todo.id}}" cols="30" rows="10">{{ current_todo.content.strip }}</textarea>
+        </label>
+    </form>
+{% endblock content %}

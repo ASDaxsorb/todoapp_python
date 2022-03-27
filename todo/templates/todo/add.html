@@ -1,0 +1,22 @@
+{% extends 'todo/base.html' %}
+
+{% block nav_options %}
+    <li><button type="submit" form="add-form">Save</button></li>
+    <li><a href="{% url 'todo:index' %}">Cancel</a></li>  
+{% endblock nav_options %}
+
+{% block content %}
+    {% if error %} {{ error }} {% endif %}
+    <form id="add-form" action="{% url 'todo:save' %}" method="post">
+        {% csrf_token %}
+        <label>
+            Title:
+            <input type="text" name="title" id="title">
+        </label>
+        <br>
+        <label>
+            Content:
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        </label>
+    </form>
+{% endblock content %}
