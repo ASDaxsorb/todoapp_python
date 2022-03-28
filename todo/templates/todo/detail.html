@@ -1,17 +1,43 @@
 {% extends 'todo/base.html' %}  
 
 {% block nav_options %}
-    <li><a href="{% url 'todo:index' %}">Back</a></li>
-    <li><a href="{% url 'todo:edit' current_todo.id %}">Edit</a></li>
+    <li>
+        <a 
+            href="{% url 'todo:index' %}"
+            class="block rounded-lg p-2 font-medium items-center border-2 border-red-500 hover:text-red-500 transition-all w-20 text-center"
+        >
+            Back
+        </a>
+    </li>
+    <li>
+        <a 
+            href="{% url 'todo:edit' current_todo.id %}"
+            class="block w-20 text-center rounded-lg p-2 font-medium items-center border-2 border-green-500 hover:text-green-400 transition-all"
+        >
+            Edit
+        </a>
+    </li>
 {% endblock nav_options %}
 
 {% block content %}
-    <article>
-        <section>
-            <p> {{ current_todo.title }} - {{ current_todo.is_completed }} </p> 
-            <span> {{ current_todo.pub_date|date:"m-d-Y" }} </span>
+    <article class="px-8">
+        <section class="flex flex-col md:flex-row md:justify-between md:items-center border-b-blue-300 border-b-2 pb-3 gap-3 md:gap-0">
+            <p class="flex gap-2 items-center text-4xl font-medium">
+                {{ current_todo.title }}
+                {% if current_todo.is_completed %}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 md:h-8 md:w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                {% endif %}
+            </p> 
+            <span class="flex gap-2 items-center text-slate-600 text-xl font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                 {{ current_todo.pub_date|date:"m-d-Y" }} 
+            </span>
         </section>
-        <section>
+        <section class="bg-slate-200 rounded-lg mt-6 p-6 shadow-md shadow-slate-200 text-md md:text-lg font-medium">
             <p>
                 {{ current_todo.content }}
             </p>
