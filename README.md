@@ -18,14 +18,19 @@ This is a basic todo App made with Django.
 
 3. Install django with pipe:
     ```
-    pipe install django
+    pip install django
     ```
 
-4. Run the server:
+4. Install django-tailwind:
+    ```
+    python -m pip install django-tailwind
+    ```
+
+5. Run the server:
     ```
     py manage.py runserver
     ```
 
-Open the server in youre borwser!
+Open the server in your browser!
 
 Happy Coding 🧑‍💻!
