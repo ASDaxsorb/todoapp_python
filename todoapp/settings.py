@@ -30,26 +30,25 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-DJANGO_APPS = (
+INSTALLED_APPS = (
+    "theme",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "todo",
+    "tailwind",
+    "django_browser_reload",
 )
-
-LOCAL_APPS = ("todo",)
-
-THIRD_APPS = ("tailwind", "theme", "django_browser_reload")
-
-INSTALLED_APPS = THIRD_APPS + DJANGO_APPS + LOCAL_APPS
 
 TAILWIND_APP_NAME = "theme"
 
 INTERNAL_IPS = ["127.0.0.1"]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -132,3 +131,4 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
